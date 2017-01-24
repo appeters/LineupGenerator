@@ -11,7 +11,7 @@ namespace Softball.Provider
     public class FieldProvider
     {
 
-        public Dictionary<FieldPosition, Position> Positions = new Dictionary<FieldPosition, Position>();
+        public List<Position> Positions = new List<Position>();
         public List<Position> Bench = new List<Position>();
 
         public FieldProvider()
@@ -19,12 +19,16 @@ namespace Softball.Provider
             foreach (FieldPosition positionName in Enum.GetValues(typeof(FieldPosition)))
             {
                 Console.WriteLine(positionName);
-                Positions.Add(positionName, new Position(positionName));
+                Positions.Add(new Position(positionName));
             }
         }
-       
 
-        
+        public Position GetPosition(FieldPosition position)
+        {
+           return Positions.Find(x => x.FieldPosition == position);
+        }
+
+
     }
 
 

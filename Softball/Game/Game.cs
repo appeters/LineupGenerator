@@ -15,7 +15,13 @@ namespace Softball.Game
             for (int i = 0; i < 7; i++)
             {
                 innings.Add(new Inning(players));
-                innings[i].PrintInning();
+               // innings[i].PrintInning();
+            }
+
+            innings[0].PrintInningHeader();
+            foreach (var inning in innings)
+            {
+                inning.PrintInning();
             }
 
         }

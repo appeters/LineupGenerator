@@ -15,8 +15,8 @@ namespace LineupGenerator
         {
             ExcelDataReader a = new ExcelDataReader(@".\Data\DummyData.xlsx");
 
-            // Game b = new Game(a.GetPlayers());
-            FieldProvider c = new FieldProvider();
+            Game b = new Game(a.GetPlayers());
+            
 
         }
     }
