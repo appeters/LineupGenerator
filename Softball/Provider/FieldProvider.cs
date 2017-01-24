@@ -7,19 +7,25 @@ using Softball.Positions;
 
 namespace Softball.Provider
 {
+
     public class FieldProvider
     {
-        public Position Pitcher;
-        public Position Catcher;
-        public Position FirstBase;
-        public Position SecondBase;
-        public Position ThirdBase;
-        public Position ShortStop;
-        public Position RightField;
-        public Position RightCenterField;
-        public Position LeftCenterField;
-        public Position LeftField;
 
+        public Dictionary<FieldPosition, Position> Positions = new Dictionary<FieldPosition, Position>();
         public List<Position> Bench = new List<Position>();
+
+        public FieldProvider()
+        {
+            foreach (FieldPosition positionName in Enum.GetValues(typeof(FieldPosition)))
+            {
+                Console.WriteLine(positionName);
+                Positions.Add(positionName, new Position(positionName));
+            }
+        }
+       
+
+        
     }
+
+
 }

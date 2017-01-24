@@ -60,6 +60,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enumerations.cs" />
     <Compile Include="Game\Game.cs" />
     <Compile Include="Game\Inning.cs" />
     <Compile Include="Positions\Position.cs" />

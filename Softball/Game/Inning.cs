@@ -18,7 +18,7 @@ namespace Softball.Game
             Random a = new Random();
             int start = a.Next(players.Count);
 
-            field.Pitcher = new Position(players[0 + start % players.Count]);
+            //field.Pitcher = new Position(players[0 + start % players.Count]);
 
 
         }
@@ -26,7 +26,7 @@ namespace Softball.Game
 
         public void PrintInning()
         {
-            Console.WriteLine("Pitcher: " + field.Pitcher.Name);
+          //  Console.WriteLine("Pitcher: " + field.Pitcher.Name);
         }
 
 
