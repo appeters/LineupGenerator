@@ -18,15 +18,35 @@ namespace Softball.Game
             Random a = new Random();
             int start = a.Next(players.Count);
 
-            field.Pitcher = new Position(players[0 + start % players.Count]);
+            var positionCount = field.Positions.Count;
+            for(int i =0; i < positionCount; i++)
+            {
+                field.Positions[i].SetPlayer(players[(i +start) % players.Count]);
+            }
+            
 
 
+        }
+
+        public void PrintInningHeader()
+        {
+            foreach (var position in field.Positions)
+            {
+                Console.Write(string.Format("|  {0}   |", position.FieldPosition));
+
+            }
+            Console.WriteLine();
         }
 
 
         public void PrintInning()
         {
-            Console.WriteLine("Pitcher: " + field.Pitcher.Name);
+            foreach (var position in field.Positions)
+            {
+                Console.Write(string.Format("|  {0}   |", position.PlayerName()));
+
+            }
+            Console.WriteLine();
         }
 
 

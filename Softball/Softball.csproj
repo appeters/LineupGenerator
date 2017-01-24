@@ -60,12 +60,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enumerations.cs" />
     <Compile Include="Game\Game.cs" />
     <Compile Include="Game\Inning.cs" />
     <Compile Include="Positions\Position.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Provider\FieldProvider.cs" />
     <Compile Include="Team\Player.cs" />
+    <Compile Include="Team\PositionRank.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

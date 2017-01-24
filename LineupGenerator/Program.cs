@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using LineupGenerator.DataProviders;
 using Softball.Game;
+using Softball.Provider;
 
 namespace LineupGenerator
 {
@@ -15,6 +16,7 @@ namespace LineupGenerator
             ExcelDataReader a = new ExcelDataReader(@".\Data\DummyData.xlsx");
 
             Game b = new Game(a.GetPlayers());
+            
 
         }
     }

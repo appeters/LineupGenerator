@@ -9,11 +9,24 @@ namespace Softball.Positions
 {
     public class Position
     {
-        public Position(Player player)
+        public Position(FieldPosition position)
         {
-            Name = player.Name;
+            FieldPosition = position;
         }
 
-        public string Name { get; }
+
+        public void SetPlayer(Player player)
+        {
+            _player = player;
+        }
+
+        public string PlayerName()
+        {
+            return _player.Name ?? null;
+        }
+
+
+        public FieldPosition FieldPosition;
+        private Player _player=null;
     }
 }
