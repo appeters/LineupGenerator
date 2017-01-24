@@ -15,15 +15,26 @@ namespace Softball.Game
 
         public Inning(List<Player> players)
         {
-            Random a = new Random();
-            int start = a.Next(players.Count);
 
-            var positionCount = field.Positions.Count;
-            for(int i =0; i < positionCount; i++)
+            var sortedPlayers = players.OrderBy(x => x.sitOrCaughtCount).ToList();
+
+            foreach (var player in sortedPlayers)
             {
-                field.Positions[i].SetPlayer(players[(i +start) % players.Count]);
+                var sortedPositions = player.PositionRanks.Where(x => x.Rank != 0).OrderBy(x => x.Rank);
+                foreach (var position in sortedPositions)
+                {
+                    if (field.Positions.Find(x => x.FieldPosition == position.Position.FieldPosition).PlayerName() ==
+                        null)
+                    {
+                        field.Positions.Find(x => x.FieldPosition == position.Position.FieldPosition).SetPlayer(player);
+                        break;
+                    }
+                    field.Bench.Add(player);
+                }
+
             }
-            
+
+          
 
 
         }
