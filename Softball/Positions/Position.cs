@@ -22,7 +22,11 @@ namespace Softball.Positions
 
         public string PlayerName()
         {
-            return _player.Name ?? null;
+            if (_player == null)
+            {
+                return null;
+            }
+            return _player.Name;
         }
 
 
