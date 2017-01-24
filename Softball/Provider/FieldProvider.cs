@@ -18,7 +18,6 @@ namespace Softball.Provider
         {
             foreach (FieldPosition positionName in Enum.GetValues(typeof(FieldPosition)))
             {
-                Console.WriteLine(positionName);
                 Positions.Add(new Position(positionName));
             }
         }
