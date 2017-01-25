@@ -15,15 +15,40 @@ namespace Softball.Game
 
         public Inning(List<Player> players)
         {
-            Random a = new Random();
-            int start = a.Next(players.Count);
 
-            var positionCount = field.Positions.Count;
-            for(int i =0; i < positionCount; i++)
+            players = players.OrderByDescending(x => x.sitOrCaughtCount).ToList();
+
+            foreach (var player in players)
             {
-                field.Positions[i].SetPlayer(players[(i +start) % players.Count]);
+                var sortedPositions = player.PositionRanks.Where(x => x.Rank != 0).OrderBy(x => x.Rank);
+                bool playerPlaced = false;
+                foreach (var position in sortedPositions)
+                {
+                    if (field.Positions.Find(x => x.FieldPosition == position.Position.FieldPosition).PlayerName() ==
+                        null)
+                    {
+                        field.Positions.Find(x => x.FieldPosition == position.Position.FieldPosition).SetPlayer(player);
+                        playerPlaced = true;
+                        break;
+                    }
+                    
+                }
+                if (!playerPlaced)
+                {
+                    if (field.Positions.Find(x => x.FieldPosition == FieldPosition.Catcher).PlayerName() ==
+                        null)
+                    {
+                        field.Positions.Find(x => x.FieldPosition == FieldPosition.Catcher).SetPlayer(player);
+                    }
+                    else
+                    {
+                        field.Bench.Add(player);
+                    }
+                    player.sitOrCaughtCount++;
+                }
             }
-            
+
+          
 
 
         }
@@ -32,7 +57,7 @@ namespace Softball.Game
         {
             foreach (var position in field.Positions)
             {
-                Console.Write(string.Format("|  {0}   |", position.FieldPosition));
+                Console.Write(string.Format("|{0}|", position.FieldPosition));
 
             }
             Console.WriteLine();
@@ -43,8 +68,10 @@ namespace Softball.Game
         {
             foreach (var position in field.Positions)
             {
-                Console.Write(string.Format("|  {0}   |", position.PlayerName()));
-
+                int length = position.FieldPosition.ToString().Length;
+                int buffer = length - position.PlayerName().Length;
+                string a = new string(' ', buffer);
+                Console.Write(string.Format("|{0}{1}|", position.PlayerName(), a));
             }
             Console.WriteLine();
         }
